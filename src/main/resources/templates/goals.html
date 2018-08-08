@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" >
+    <meta charset="UTF-8">
+    <title>Context-->Goal-->Metrics</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div id="nav-placeholder">
+        <div id="menu1" class="tab-pane fade in active">
+            <h2 class="text-primary"> Explore Goals By Context</h2>
+            <div class="well well-sm">This page enables the PM practioner to discover PM litterature goals by picking a specific context</div>
+            <div>
+                <form th:action="@{/goals/search}"  method="post" > <!-- th:Object="${slrform}" -->
+            <div class="row" >
+
+                    <div class="row">
+                        <!-- <form class="form-inline"> -->
+                            <div class="col-sm-6" >
+                                <label for="formatInput">Input Format</label>
+                                <select multiple class="form-control" id="formatInput"   name="format"  >
+                                   <option th:each="element1:${slrform.eFormats}" th:text="${element1}"  ></option>
+                                    <!-- <option>CSV</option>
+                                    <option>MXML</option>
+                                    <option>XES</option>
+                                    <option>Others</option> -->
+                                </select>
+                            </div>
+                            <div class="col-sm-6" >
+                                <label for="natureInput">System Type</label>
+                                <select multiple class="form-control" id="natureInput" name="natsys"   >
+                                   <option th:each="element2:${slrform.sysTypes}" th:text="${element2}" ></option>
+                                    <!-- <option>Analytical</option>
+                                    <option>Transactional</option> -->
+                                </select>
+                            </div>
+                     <!--   </form> -->
+                    </div>
+                    <br><br>
+                    <!-- Line 2 -->
+                    <div class="row">
+                       <!-- <form class="form-inline"> -->
+                            <div class="col-sm-4">
+                                <label for="selectSector">Input</label>
+                                <select class="form-control form-control-sm" id="selectSector" name="input"  >
+                                   <option th:each="element3:${slrform.inputs}" th:text="${element3}" ></option>
+                                    <!-- <option>Healthcare</option>
+                                    <option>Audit</option>
+                                    <option>Manufacturing</option> -->
+                                </select>
+                            </div>
+
+                            <div class="col-sm-3" >
+                                <label for="selectUser" >User Type</label>
+                                <select class="form-control form-control-sm" id="selectUser"  name="userTypeSelect" >
+                                    <option th:each="element4:${slrform.userTypes}" th:text="${element4}"  ></option>
+                                    <!-- <option>Type 1</option>
+                                    <option>Type 2</option>
+                                    <option>Type 3</option> -->
+                                </select>
+                            </div>
+                            <div class="col-sm-5" >
+                                <label for="logSource">Event Log Source</label>
+                                <select class="form-control form-control-sm" id="logSource" name="lsource"  >
+                                    <option th:each="element5:${slrform.eSources}" th:text="${element5}" ></option>
+                                    <!-- <option>Database</option>
+                                    <option>Email</option>
+                                    <option>Spreadsheets</option> -->
+                                </select>
+                            </div>
+
+                      <!--  </form> -->
+                    </div>
+
+                    <!-- Line 2 END -->
+                    <br><br>
+                    <!-- form's Button -->
+                </div>
+               <!--  <form class="form-inline" th:action="@{/goals/search}" th:Object="${slrform}" method="post" > -->
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-md btn-default active" type="reset">Reset fields</button>
+                        <button type="submit" class="btn btn-md btn-default" ><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </div>
+             <!--   </form> -->
+                </form>
+            </div>
+            <!-- form's Button END -->
+
+        </div>
+    </div>
+    <br><br>
+    <div th:object="${goalList}">
+        <table class="table table-hover table-bordered" id="result">
+            <thead>
+            <th>ID</th>
+            <th>Goal</th>
+            <th>explore</th>
+            </thead>
+            <tbody>
+            <tr class="warning" th:each="element5:${goalList}">
+                <td th:text="${element5.id}"></td>
+                <td th:text="${element5.intention}">detect bla bla black</td>
+                <td class="active"><a href="#" th:href="${'/goals/search/'+element5.id}" target="_blank">Click here!!</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

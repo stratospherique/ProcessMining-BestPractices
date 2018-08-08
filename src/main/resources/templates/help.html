@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <div th:replace="fragments/headerinc :: head"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"/>
+
+    <h3>this the help page</h3>
+
+    <img src="../static/img/subject.png" th:src="@{/img/subject.png}">
+
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

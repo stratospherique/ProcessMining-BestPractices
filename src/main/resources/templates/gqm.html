@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h3>The GQM method view of the selected goal</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Goal:</th>
+            <td></td>
+            <td th:text="${gqm.goal.intention}" ></td>
+        </tr>
+        <tr>
+            <th >View Point:</th>
+            <td></td>
+            <td th:text="${gqm.viewPoint}"></td>
+        </tr>
+       <tr>
+            <th>Question:</th>
+           <td>Q1</td>
+            <td>What tools and plugins were used to fulfill their aim?</td>
+        </tr>
+
+        <tr>
+            <th>Metrics</th>
+            <td>M1</td>
+            <td >Tools:<ul th:each="element:${gqm.tools}" >
+                <li th:text="${element.toolU}" ></li>
+            </ul>  </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>M2</td>
+            <td >Plugins:<ul th:each="element:${gqm.plugins}">
+                <li th:text="${element.name}"></li>
+            </ul>
+        </tr>
+        <tr>
+            <th>Question</th>
+            <td>Q2</td>
+            <td>What kind of Input were used in this use case?</td>
+        </tr>
+        <tr>
+            <th>Metrics:</th>
+            <td>M3</td>
+            <td >Event Log Source:<ul th:each="element:${gqm.eSources}">
+                <li th:text="${element.source}"></li>
+            </ul>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>M4</td>
+            <td >Format:<ul th:each="element:${gqm.eFormats}">
+                <li th:text="${element.format}" ></li></ul></td>
+        </tr>
+        <tr>
+            <th>Question:</th>
+            <td>Q3</td>
+            <td>What kind of output were obtained in this use case?</td>
+        </tr>
+        <tr>
+            <th>Metrics</th>
+            <td>M5</td>
+            <td>Outputs <ul th:each="element:${gqm.outputs}">
+                <li th:text="${element.out}" ></li></ul> </td>
+        </tr>
+
+                <tr>
+                    <th>Question:</th>
+                    <td>Q4</td>
+                    <td>Did the application encountered any kind of problems?</td>
+                </tr>
+                <tr>
+                    <th>Metrics</th>
+                    <td>M6</td>
+                    <td>Unresolved Issues:<ul th:if="${gqm.issue}!=null">
+                        <li th:text="${gqm.issue.unrIssue}" >none</li></ul></td>
+                </tr>
+                <tr>
+                    <th>Question</th>
+                    <td>Q5</td>
+                    <td>The level of expertise required ?</td>
+                </tr>
+                <tr>
+                    <th>Metrics:</th>
+                    <td>M7</td>
+                    <td>User Type: <ul th:if="${gqm.userType}!=null">
+                        <li th:text="${gqm.userType.uType}" >none</li></ul></td>
+                </tr>
+    </table>
+</div>
+</body>
+</html>
